@@ -33,7 +33,6 @@ public class KeyphraseExtractorWorker extends SwingWorker<Void, Void>{
 			
 			String outputPath = Main.outputFolder.getAbsolutePath() + File.separator + pdf.getName().split("\\.")[0] + ".txt";
 
-			System.out.println(outputPath);
 			output = new File(outputPath);
 			if (!output.exists()) {
 				System.out.println(output.createNewFile());

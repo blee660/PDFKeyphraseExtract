@@ -45,7 +45,6 @@ public class ExtractKeywords {
 		ke.setStemmer(new PorterStemmer());
 		
 		// 8. Stopwords
-		System.out.println(Main.stopwords.exists());
 		MyStopwords sw = new MyStopwords();
 		ke.setStopwords(sw);
 		
