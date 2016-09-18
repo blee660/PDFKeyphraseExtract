@@ -1,0 +1,1 @@
+In this thesis we investigate the dynamic problems of interval scheduling. The em- phasis is on interval scheduling in the following contexts: single machine, multiple machines, and elastic mixed-criticality real-time systems. We analyze the com- plexity of these problems and find dynamic algorithms that efficiently maintain the interval set in the presence of real-time events.
