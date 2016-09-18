@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Hashtable;
 
 import kea.stopwords.Stopwords;
-import main.extraction.Main;
+import main.Main;
 
 public class MyStopwords extends Stopwords{
 
@@ -27,7 +27,7 @@ public class MyStopwords extends Stopwords{
 				is = new InputStreamReader(new FileInputStream(txt), "UTF-8");
 				BufferedReader br = new BufferedReader(is);				
 				while ((sw=br.readLine()) != null)  {
-					m_Stopwords.put(sw, dummy);   
+					m_Stopwords.put(sw, dummy); 
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
