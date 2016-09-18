@@ -17,12 +17,11 @@ import weka.core.Instances;
 import weka.core.Option;
 import weka.core.OptionHandler;
 import weka.core.Utils;
+import wrapper.MyStopwords;
 import kea.filters.KEAFilter;
 import kea.stemmers.SremovalStemmer;
 import kea.stemmers.Stemmer;
 import kea.stopwords.Stopwords;
-import kea.stopwords.StopwordsEnglish;
-
 /**
  * Modification of KEAKeyphraseExtractor.java 
  * Extracts keyphrases from documents in a given directory.
@@ -114,7 +113,7 @@ public class KeyphraseExtractor implements OptionHandler {
 	
 	
 	/** The list of stop words to be used */
-	private Stopwords m_Stopwords = new StopwordsEnglish();
+	private Stopwords m_Stopwords;
 	
 	
 	/** Also write stemmed phrase and score into .key file. */
@@ -626,7 +625,7 @@ public class KeyphraseExtractor implements OptionHandler {
 		if (getVocabulary().equals("none")) {
 			m_KEAFilter.m_NODEfeature = false;
 		} else {
-			m_KEAFilter.loadThesaurus(m_Stemmer,m_Stopwords);
+			m_KEAFilter.loadThesaurus(m_Stemmer,m_Stopwords, Main.agro);
 		}
 		
 		FastVector atts = new FastVector(3);
@@ -761,8 +760,8 @@ public class KeyphraseExtractor implements OptionHandler {
 	/** 
 	 * Loads the extraction model from the file.
 	 */
-	public void loadModel() throws Exception {
-		
+	public void loadModel() throws Exception {		
+		m_Stopwords = new MyStopwords();
 		BufferedInputStream inStream =
 			new BufferedInputStream(new FileInputStream(m_modelName));
 		ObjectInputStream in = new ObjectInputStream(inStream);

@@ -1,5 +1,0 @@
-Problem solving
-Mutation
-Semantics
-Ontology
-Automation

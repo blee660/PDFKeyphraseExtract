@@ -2,7 +2,7 @@ package main.extraction;
 
 import java.util.ArrayList;
 import kea.stemmers.PorterStemmer;
-import kea.stopwords.StopwordsEnglish;
+import wrapper.MyStopwords;
 
 /**
  * Class to set all options for extraction of keyphrases 
@@ -22,7 +22,7 @@ public class ExtractKeywords {
 		ke.setFileName(m_fileName);
 		
 		// 2. Name of the model -- give the path to the model 
-		ke.setModelName("testdocs/en/model");
+		ke.setModelName(Main.model.getPath());
 		 
 		// 3. Name of the vocabulary -- name of the file (without extension) that is stored in VOCABULARIES
 		//    or "none" if no Vocabulary is used (free keyphrase extraction).
@@ -45,7 +45,9 @@ public class ExtractKeywords {
 		ke.setStemmer(new PorterStemmer());
 		
 		// 8. Stopwords
-		ke.setStopwords(new StopwordsEnglish());
+		System.out.println(Main.stopwords.exists());
+		MyStopwords sw = new MyStopwords();
+		ke.setStopwords(sw);
 		
 		// 9. Number of Keyphrases to extract
 		ke.setNumPhrases(5);
@@ -73,9 +75,6 @@ public class ExtractKeywords {
 	
 	public static void main(String[] args) {
 		
-		ExtractKeywords extract = new ExtractKeywords();
-		extract.setOptionsTesting(args[0]);
-		extract.extractKeyphrases();
 
 	}
 }
