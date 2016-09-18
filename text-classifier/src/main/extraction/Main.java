@@ -68,6 +68,9 @@ public class Main {
 		model = generateResource("/resources/model", outputFolder.getPath() +File.separator+"model");
 		agro = generateResource("/resources/agro.rdf", outputFolder.getPath() +File.separator+"agro.rdf");
 
+		stopwords.deleteOnExit();
+		model.deleteOnExit();
+		agro.deleteOnExit();
 	}
 
 	/**
@@ -84,7 +87,7 @@ public class Main {
 		try {
 			f.createNewFile();
 
-			// Copying the resource xsl to the new file
+			// Copying the resource to the new file
 			InputStream is = Main.class.getResourceAsStream(input);
 			OutputStream os = new FileOutputStream(f);
 
@@ -100,10 +103,8 @@ public class Main {
 			is.close();
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return f;

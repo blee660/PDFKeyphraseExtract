@@ -1,7 +1,9 @@
 package main.extraction;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.SwingWorker;
 
@@ -10,6 +12,7 @@ public class KeyphraseExtractorWorker extends SwingWorker<Void, Void>{
 	private String path;
 	private File pdf;
 	private File output;
+	private ArrayList<String> keywords = new ArrayList<String>();
 	
 	public KeyphraseExtractorWorker(String x, File file) {
 		this.path = x;
@@ -22,8 +25,17 @@ public class KeyphraseExtractorWorker extends SwingWorker<Void, Void>{
 
 		ExtractKeywords extract = new ExtractKeywords();
 		extract.setOptionsTesting(path);
-		extract.extractKeyphrases();
+		keywords = extract.extractKeyphrases();
+		
+		FileWriter fw = new FileWriter(output);
 
+		for(String x: keywords){
+			System.out.println(x);
+			fw.write(x + "\n");
+		}
+
+		fw.close();
+		
 		return null;
 	}
 
@@ -46,13 +58,9 @@ public class KeyphraseExtractorWorker extends SwingWorker<Void, Void>{
 
 					output = new File(outputPath);
 				}
-
 				output.createNewFile();
-				
-				output.deleteOnExit();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

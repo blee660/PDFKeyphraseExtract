@@ -55,26 +55,20 @@ public class ExtractKeywords {
 		ke.setBuildGlobal(false);			
 	}
 
-	public void extractKeyphrases() {
+	public ArrayList<String> extractKeyphrases() {
+		ArrayList<String> list = new ArrayList<String>();
 		try {
 			// load model for extraction
 			ke.loadModel();
-			
+
 			// extract keyphrases
-			ArrayList<String> list = ke.extractKeyphrases(ke.collectStems(ke.m_fileName));
-			
-			// print all keyphrases from list
-			for (int i=0; i<list.size(); i++){
-				System.out.println(list.get(i));
-			}
+			list = ke.extractKeyphrases(ke.collectStems(ke.m_fileName));
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static void main(String[] args) {
 		
-
+		return list;
 	}
 }
 
